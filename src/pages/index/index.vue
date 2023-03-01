@@ -1,3 +1,12 @@
+<!--
+ * @Copyright: Copyright© 2022 AOMEI
+ * @Abstract: 
+ * @Date: 2023-02-14 17:14:42
+ * @Author: 
+ * @LastEditors: houliucun
+ * @LastEditTime: 2023-03-01 17:44:29
+ * @RevisionHistory: 
+-->
 <template>
   <view class="container">
     <view class="banner">
@@ -21,16 +30,16 @@
     <view class="hotSinger">
       <view class="title"> 你感兴趣 </view>
       <view class="middel-tab">
-        <vie class="item-tab"></vie>
-        <vie class="item-tab"></vie>
-        <vie class="item-tab"></vie>
+        <view class="item-tab" @click="toHotSinger">热门歌手</view>
+        <view class="item-tab">最新MV</view>
+        <view class="item-tab">热门歌单</view>
       </view>
     </view>
   </view>
 </template>
 
 <script>
-import { bannerImg } from "../../axios/api";
+import { bannerImg } from "@/axios/api";
 export default {
   data() {
     return {
@@ -54,11 +63,20 @@ export default {
         this.bannerList = result.banners;
       }
     },
+    toHotSinger() {
+      uni.navigateTo({
+        url: "/pages/hotsinger/hotsinger",
+      });
+    },
   },
 };
 </script>
 
 <style lang="less" scope>
+uni-image {
+  width: 100%;
+  height: 400rpx;
+}
 .container {
   padding: 0 15rpx;
 }
@@ -76,8 +94,17 @@ export default {
     vertical-align: middle;
   }
 }
-uni-image {
-  width: 100%;
-  height: 400rpx;
+.hotSinger {
+  .middel-tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24rpx;
+    background: #fff;
+  }
+  .item-tab {
+    width: 25%;
+    border-radius: 16rpx;
+  }
 }
 </style>

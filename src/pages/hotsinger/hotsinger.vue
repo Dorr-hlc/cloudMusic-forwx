@@ -1,14 +1,5 @@
-<!--
- * @Copyright: Copyright© 2022 AOMEI
- * @Abstract: 
- * @Date: 2023-03-01 13:37:27
- * @Author: 
- * @LastEditors: houliucun
- * @LastEditTime: 2023-03-01 17:43:17
- * @RevisionHistory: 
--->
 <template>
-  <view class=""></view>
+  <view class="">热门歌手</view>
 </template>
 
 <script>
@@ -29,7 +20,9 @@ export default {
   // 生命周期 - 挂载完成（可以访问DOM元素）
   onReady() {},
   // 方法集合
-  methods: {},
+  methods: {
+
+  },
   onHide() {}, // 生命周期 - 监听页面隐藏
   onUnload() {}, // 生命周期 - 监听页面卸载
 };
