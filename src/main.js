@@ -1,11 +1,20 @@
-import Vue from 'vue'
-import App from './App'
+/*
+ * @Copyright: Copyright© 2022 AOMEI
+ * @Abstract:
+ * @Date: 2023-03-01 18:50:45
+ * @Author:
+ * @LastEditors: houliucun
+ * @LastEditTime: 2023-03-12 22:25:44
+ * @RevisionHistory:
+ */
+import Vue from "vue";
+import App from "./App";
+import * as Api from "./axios/request.js";
+Vue.config.productionTip = false;
 
-Vue.config.productionTip = false
-
-App.mpType = 'app'
+App.mpType = "app";
 // 引入Vuex仓库
-import store from '@/store'
+import store from "@/store";
 // 引入路由
 function isPromise(obj) {
   return (
@@ -31,9 +40,9 @@ uni.addInterceptor({
     });
   },
 });
-
+Vue.prototype.$api = Api;
 const app = new Vue({
   ...App,
-  store
-})
-app.$mount()
+  store,
+});
+app.$mount();

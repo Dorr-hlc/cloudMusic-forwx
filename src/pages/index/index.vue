@@ -4,7 +4,7 @@
  * @Date: 2023-02-14 17:14:42
  * @Author: 
  * @LastEditors: houliucun
- * @LastEditTime: 2023-03-01 17:44:29
+ * @LastEditTime: 2023-03-12 22:30:43
  * @RevisionHistory: 
 -->
 <template>
@@ -30,16 +30,27 @@
     <view class="hotSinger">
       <view class="title"> 你感兴趣 </view>
       <view class="middel-tab">
-        <view class="item-tab" @click="toHotSinger">热门歌手</view>
-        <view class="item-tab">最新MV</view>
-        <view class="item-tab">热门歌单</view>
+        <view class="item-tab" @click="toHotSinger">
+          <image src="@/static/images/home/singer.png"></image>
+          热门歌手</view
+        >
+        <view class="item-tab">
+          <image src="@/static/images/home/MV.png"></image>
+          最新MV</view
+        >
+        <view class="item-tab">
+          <image src="@/static/images/home/menu.png"></image>
+          热门歌单</view
+        >
       </view>
+    </view>
+    <view class="recommend">
+      <view class="title"> 推荐新音乐 </view>
     </view>
   </view>
 </template>
 
 <script>
-import { bannerImg } from "@/axios/api";
 export default {
   data() {
     return {
@@ -50,19 +61,21 @@ export default {
         interval: 3000,
         duration: 500,
       },
+      newSongs: {},
     };
   },
   onLoad() {
     this.getBannerImg();
+    // this.getNewMusic();
   },
   computed: {},
   methods: {
-    async getBannerImg() {
-      let result = await bannerImg();
-      if (result.code == 200) {
-        this.bannerList = result.banners;
-      }
+    getBannerImg() {
+      this.$api.bannerImg({}, (res) => {
+        this.bannerList = res.banners;
+      });
     },
+
     toHotSinger() {
       uni.navigateTo({
         url: "/pages/hotsinger/hotsinger",
@@ -98,13 +111,24 @@ uni-image {
   .middel-tab {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     font-size: 24rpx;
     background: #fff;
+    padding: 15rpx;
+    border-radius: 26rpx;
   }
   .item-tab {
     width: 25%;
-    border-radius: 16rpx;
+    border-radius: 32rpx;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 10rpx;
+    image {
+      width: 64rpx;
+      height: 64rpx;
+    }
   }
 }
 </style>
